@@ -6,10 +6,6 @@ import { showModal } from "src/reducers/globalSlice";
 import { WalletKeys } from "src/services/connectors/wallet.connector";
 import { RootState } from "src/store";
 import { abbreviateAddress } from "src/utils";
-import Connect from "./Connect";
-import Connected from "./Connected";
-import Disconnect from "./Disconnect";
-import WrongNetwork from "./WrongNetwork";
 
 function WalletSelector({
   connectWallet,
@@ -61,30 +57,29 @@ function WalletSelector({
     disconnectButtonMenu.setVisible(!disconnectButtonMenu.visible);
   };
 
-  return (
-    <div className="relative text">
-      {isWrongNetwork ? (
-        <WrongNetwork onClick={toggleDisconnectButton}></WrongNetwork>
-      ) : connectedWallet?.wallet?.api ? (
-        <Connected
-          address={walletAddress}
-          onClick={toggleDisconnectButton}
-          connecting={isWalletConnecting}
-          iconUrl={walletIconUrl}
-          prefix={networkId === 0 ? "(preview) " : ""}
-        ></Connected>
-      ) : (
-        <Connect onClick={showWalletSelection}></Connect>
-      )}
-      <Disconnect
-        ref={disconnectButtonMenu.ref}
-        isShown={
-          connectedWallet?.wallet?.api != null && disconnectButtonMenu.visible
-        }
-        onClick={disconnectWallet}
-      ></Disconnect>
-    </div>
-  );
+  return null;
+  // <div className="relative text">
+  //   {isWrongNetwork ? (
+  //     <WrongNetwork onClick={toggleDisconnectButton}></WrongNetwork>
+  //   ) : connectedWallet?.wallet?.api ? (
+  //     <Connected
+  //       address={walletAddress}
+  //       onClick={toggleDisconnectButton}
+  //       connecting={isWalletConnecting}
+  //       iconUrl={walletIconUrl}
+  //       prefix={networkId === 0 ? "(preview) " : ""}
+  //     ></Connected>
+  //   ) : (
+  //     <Connect onClick={showWalletSelection}></Connect>
+  //   )}
+  //   <Disconnect
+  //     ref={disconnectButtonMenu.ref}
+  //     isShown={
+  //       connectedWallet?.wallet?.api != null && disconnectButtonMenu.visible
+  //     }
+  //     onClick={disconnectWallet}
+  //   ></Disconnect>
+  // </div>
 }
 
 export default WalletSelector;
