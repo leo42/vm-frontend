@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import {
   ErgoWalletApi,
+  ErgoWalletName,
   NautilusErgoWalletApi,
-  WalletName,
 } from "src/entities/ergo";
 import { setErgoWallet } from "src/reducers/walletSlice";
 import { ERROR_MESSAGE } from "src/utils/error";
@@ -12,7 +12,7 @@ type ErgoConnector = any;
 export default function useErgoWallet() {
   const dispatch = useDispatch();
 
-  const connectWallet = async (walletName: WalletName) => {
+  const connectWallet = async (walletName: ErgoWalletName) => {
     /** Recommended by nautilus to use window.ergoConnector */
     const ergoConnector: ErgoConnector = (window as any).ergoConnector;
     if (ergoConnector == null)
@@ -21,7 +21,7 @@ export default function useErgoWallet() {
     let ergoApi: ErgoWalletApi | null = null;
 
     switch (walletName) {
-      case WalletName.nautilus:
+      case ErgoWalletName.nautilus:
         ergoApi = await connectNautilus(ergoConnector);
         break;
       default:
@@ -29,6 +29,10 @@ export default function useErgoWallet() {
     }
 
     dispatch(setErgoWallet(ergoApi));
+  };
+
+  const disconnectWallet = () => {
+    dispatch(setErgoWallet(null));
   };
 
   const connectNautilus = async (
@@ -46,5 +50,6 @@ export default function useErgoWallet() {
 
   return {
     connectWallet,
+    disconnectWallet,
   };
 }

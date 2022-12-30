@@ -1,20 +1,7 @@
+import { WalletInfo, WalletState } from "src/entities/common.entities";
 import Connect from "./Connect";
 import Connected from "./Connected";
 import WrongNetwork from "./WrongNetwork";
-
-export enum WalletState {
-  notConnected,
-  connecting,
-  connected,
-  wrongNetwork,
-}
-
-export interface WalletInfo {
-  address: string;
-  iconUrl: string;
-  isApiConnected: boolean;
-  prefix?: string;
-}
 
 interface Props {
   disconnectWallet: () => void;

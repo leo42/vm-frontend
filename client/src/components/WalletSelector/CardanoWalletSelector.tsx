@@ -1,11 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ModalTypes } from "src/entities/common.entities";
+import {
+  ModalTypes,
+  WalletInfo,
+  WalletState,
+} from "src/entities/common.entities";
 import useWallet from "src/hooks/useWallet";
 import { showModal } from "src/reducers/globalSlice";
 import { RootState } from "src/store";
 import { abbreviateAddress } from "src/utils";
-import WalletSelector, { WalletInfo, WalletState } from "./WalletSelector";
+import WalletSelector from "./WalletSelector";
 
 function CardanoWalletSelector() {
   const { connectWallet } = useWallet();

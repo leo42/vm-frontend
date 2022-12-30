@@ -40,7 +40,7 @@ export const walletSlice = createSlice({
     setIsWrongNetwork: (state, action: PayloadAction<boolean>) => {
       state.isWrongNetwork = action.payload;
     },
-    setErgoWallet: (state, action: PayloadAction<ErgoWalletApi>) => {
+    setErgoWallet: (state, action: PayloadAction<ErgoWalletApi | null>) => {
       state.ergoWalletApi = action.payload;
     },
   },

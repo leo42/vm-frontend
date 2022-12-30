@@ -1,5 +1,13 @@
-export enum WalletName {
+import NautilusUrl from "src/assets/nautilus.svg";
+
+export enum ErgoWalletName {
   nautilus = "nautilus",
+}
+
+export interface ErgoWalletMetadata {
+  name: string;
+  displayName: string;
+  iconUrl: string;
 }
 
 export interface ErgoWalletApi {
@@ -15,5 +23,13 @@ export interface ErgoWalletApi {
   sign_tx_input: Function;
   submit_tx: Function;
 }
+
+export const ERGO_WALLET_INFO: Record<ErgoWalletName, ErgoWalletMetadata> = {
+  [ErgoWalletName.nautilus]: {
+    iconUrl: NautilusUrl,
+    name: "nautilus",
+    displayName: "Nautilus",
+  },
+};
 
 export type NautilusErgoWalletApi = ErgoWalletApi;
